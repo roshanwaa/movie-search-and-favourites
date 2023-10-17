@@ -22,9 +22,9 @@
     "ws": "^7.5.3"
   },
   "homepage": "https://roshanwaa.github.io/movie-search-and-favourites/",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
