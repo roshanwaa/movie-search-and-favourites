@@ -29,6 +29,7 @@ function App() {
 
   useEffect(() => {
     getMovieRequest(searchValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
