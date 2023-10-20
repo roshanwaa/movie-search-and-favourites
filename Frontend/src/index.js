@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <p className="copyRight">© roshan.waa</p>
   </React.StrictMode>
 );
 

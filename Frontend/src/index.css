@@ -24,3 +24,6 @@ body {
   text-transform: lowercase;
   font-weight: 200;
 }
+.copyRight {
+  text-align: center;
+}
