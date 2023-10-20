@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Slab:wght@100;400&display=swap');
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.form-control {
+  width: 80%;
+}
+.searchBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-title {
+  text-transform: uppercase;
+  font-size: 3em;
+  letter-spacing: 0.1em;
+  font-family: 'Roboto Slab', serif;
+}
+.main-title .thin {
+  text-transform: lowercase;
+  font-weight: 200;
+}
