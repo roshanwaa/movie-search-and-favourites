@@ -2,7 +2,9 @@ import express from 'express';
 import axios from 'axios';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
+dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -15,7 +17,7 @@ const favorites = new Set();
 app.get('/api/movies/random', async (req, res) => {
   try {
     const response = await axios.get(
-      'http://www.omdbapi.com/?s=random&type=movie&apikey=5e2770e3'
+      `http://www.omdbapi.com/?s=random&type=movie&apikey=${process.env.APIKEY}`
     );
     res.json(response.data.Search || []);
   } catch (error) {
@@ -28,7 +30,7 @@ app.get('/api/movies/search', async (req, res) => {
   const { query } = req.query;
   try {
     const response = await axios.get(
-      `http://www.omdbapi.com/?s=${query}&apikey=5e2770e3`
+      `http://www.omdbapi.com/?s=${query}&apikey=${process.env.APIKEY}`
     );
     res.json(response.data);
   } catch (error) {
