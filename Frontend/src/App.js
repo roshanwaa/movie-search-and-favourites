@@ -17,13 +17,14 @@ const App = () => {
   });
 
   const handleSearch = debounce(async (query) => {
-    if (query.trim() === '') {
-      setMovies([]);
-      return;
-    }
     try {
-      const response = await api.get(`/movies/search?query=${query}`);
-      setMovies(response.data.Search || []);
+      if (query.trim() === '') {
+        const response = await api.get('/movies/random');
+        setMovies(response.data);
+      } else {
+        const response = await api.get(`/movies/search?query=${query}`);
+        setMovies(response.data.Search || []);
+      }
     } catch (error) {
       console.error('Error fetching movie data:', error);
     }
