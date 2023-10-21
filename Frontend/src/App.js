@@ -13,7 +13,7 @@ const App = () => {
   const [favorites, setFavorites] = useState(new Set());
 
   const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://cinesearch.onrender.com/api',
   });
 
   const handleSearch = debounce(async (query) => {
