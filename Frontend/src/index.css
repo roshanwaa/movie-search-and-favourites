@@ -27,8 +27,12 @@ body {
   font-weight: 200;
 }
 .copyRight {
-  text-align: center;
+  text-align: center; /* Center the copyright text */
+  margin-top: 20px; /* Add some space between the content and the copyright */
+  font-size: 16px; /* Adjust the font size as needed */
+  color: #555; /* Choose the desired text color */
 }
+
 /* Add this to your CSS */
 .loading-overlay {
   position: fixed;

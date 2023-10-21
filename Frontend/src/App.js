@@ -15,7 +15,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true); // Initialize loading as true
 
   const api = axios.create({
-    baseURL: 'https://cinesearch.onrender.com/api',
+    baseURL: 'https://cinesearch.onrende.com/api',
   });
 
   const handleSearch = debounce(async (query) => {
