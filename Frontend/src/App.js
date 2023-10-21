@@ -54,8 +54,8 @@ const App = () => {
   return (
     <Router>
       <div className="container mt-5">
-        <h1 class="main-title">
-          Cine<span class="thin">Search</span>
+        <h1 className="main-title">
+          Cine<span className="thin">Search</span>
         </h1>
 
         <SearchBar
