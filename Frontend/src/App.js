@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Favorite from './Components/Favorites';
 import MovieList from './Components/MovieList';
 import SearchBar from './Components/SearchBar';
+import Loading from './Components/Loading';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState(new Set());
+  const [isLoading, setIsLoading] = useState(true); // Initialize loading as true
 
   const api = axios.create({
     baseURL: 'https://cinesearch.onrender.com/api',
@@ -18,6 +20,7 @@ const App = () => {
 
   const handleSearch = debounce(async (query) => {
     try {
+      setIsLoading(true); // Set loading to true when starting a new search
       if (query.trim() === '') {
         const response = await api.get('/movies/random');
         setMovies(response.data);
@@ -27,6 +30,8 @@ const App = () => {
       }
     } catch (error) {
       console.error('Error fetching movie data:', error);
+    } finally {
+      setIsLoading(false); // Set loading to false when data fetching is complete
     }
   }, 300);
 
@@ -43,10 +48,13 @@ const App = () => {
   useEffect(() => {
     const fetchRandomMovies = async () => {
       try {
+        setIsLoading(true); // Set loading to true when fetching random movies
         const response = await api.get('/movies/random');
         setMovies(response.data);
       } catch (error) {
         console.error('Error fetching random movies:', error);
+      } finally {
+        setIsLoading(false); // Set loading to false when data fetching is complete
       }
     };
     fetchRandomMovies();
@@ -54,7 +62,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container mt-5">
+      <div className="container">
         <h1 className="main-title">
           Cine<span className="thin">Search</span>
         </h1>
@@ -64,29 +72,33 @@ const App = () => {
           setSearchTerm={setSearchTerm}
           handleSearch={handleSearch}
         />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MovieList
-                movies={movies}
-                favorites={favorites}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-          <Route
-            path="/favorites"
-            element={
-              <Favorite
-                favorites={movies.filter((movie) =>
-                  favorites.has(movie.imdbID)
-                )}
-                toggleFavorite={toggleFavorite}
-              />
-            }
-          />
-        </Routes>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MovieList
+                  movies={movies}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <Favorite
+                  favorites={movies.filter((movie) =>
+                    favorites.has(movie.imdbID)
+                  )}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
+          </Routes>
+        )}
       </div>
     </Router>
   );
