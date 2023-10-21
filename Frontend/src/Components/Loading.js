@@ -5,9 +5,9 @@ import React from 'react';
 const Loading = () => {
   return (
     <div className="loading-overlay">
-      <div class="d-flex justify-content-center mt-4 mb-4">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+      <div className="d-flex justify-content-center mt-4 mb-4">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>
